@@ -15,6 +15,9 @@ class CreateIlcesTable extends Migration
     {
         Schema::create('ilces', function (Blueprint $table) {
             $table->id();
+            $table->integer('il_id');
+            $table->string('il_adi');
+            $table->string('ilce_adi');
             $table->timestamps();
         });
     }
