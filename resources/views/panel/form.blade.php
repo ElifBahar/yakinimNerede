@@ -1,5 +1,8 @@
 @extends("panel.layouts.app")
 @section("head")
+
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <div class="container-fluid py-1 px-3">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
@@ -104,149 +107,207 @@
 @section('content')
     <div class="container-fluid py-4">
         <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header pb-0">
-                        <div class="d-flex align-items-center">
-                            <p class="mb-0">Kayıt Oluştur</p>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <p class="text-uppercase text-sm">Kişisel Bilgiler</p>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="example-text-input" class="form-control-label">Ad (Boş Bırakılabilir)</label>
-                                    <input name="name" id="name" class="form-control" type="text" placeholder="Ad">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="example-text-input" class="form-control-label">Soyad (Boş Bırakılabilir)</label>
-                                    <input name="surname" id="surname" class="form-control" type="text" placeholder="Soyad">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="example-text-input" class="form-control-label">T.C Kimlik (Boş Bırakılabilir)</label>
-                                    <input name="tc" id="tc" class="form-control" type="number" placeholder="99999999999">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="example-text-input" class="form-control-label">Tahmini Yaş (Boş Bırakılabilir)</label>
-                                    <input name="age" id="age" class="form-control" type="text" placeholder="10 veya 10-11">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="example-text-input" class="form-control-label">Biliniyorsa Anne Adı (Boş Bırakılabilir)</label>
-                                    <input name="motherName" id="motherName" class="form-control" type="text" placeholder="Anne Adı">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="example-text-input" class="form-control-label">Biliniyorsa Baba Adı (Boş Bırakılabilir)</label>
-                                    <input name="fatherName" id="fatherName" class="form-control" type="text" placeholder="Baba Adı">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group" name="is_alive" id="is_alive">
-                                    <select>
-                                        <option>Durum...</option>
-                                        <option value="0">Yaşıyor</option>
-                                        <option value="1">Ölü</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group" name="gender" id="gender">
-                                    <select>
-                                        <option>Cinsiyet...</option>
-                                        <option value="0">Erkek</option>
-                                        <option value="1">Kadın</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group" name="is_adult" id="is_adult">
-                                    <select>
-                                        <option>Yaş Aralığı</option>
-                                        <option value="0">Yetişkin</option>
-                                        <option value="1">Çocuk</option>
-                                    </select>
-                                </div>
+
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header pb-0">
+                            <div class="d-flex align-items-center">
+                                <p class="mb-0">Kayıt Oluştur</p>
                             </div>
                         </div>
-                        <hr class="horizontal dark">
-                        <p class="text-uppercase text-sm">Adres Bilgileri</p>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="example-text-input" class="form-control-label">Açık Adres</label>
-                                    <input name="address" id="address" class="form-control" type="text" placeholder="Elazığ, Çaydaçıra Mah. x sokak vs. vs.">
+                        <div class="card-body">
+                            <p class="text-uppercase text-sm">Kişisel Bilgiler</p>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="example-text-input" class="form-control-label">Ad (Boş
+                                            Bırakılabilir)</label>
+                                        <input name="name" id="name" class="form-control" type="text" placeholder="Ad">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="example-text-input" class="form-control-label">Soyad (Boş
+                                            Bırakılabilir)</label>
+                                        <input name="surname" id="surname" class="form-control" type="text"
+                                               placeholder="Soyad">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="example-text-input" class="form-control-label">T.C Kimlik (Boş
+                                            Bırakılabilir)</label>
+                                        <input name="tc" id="tc" class="form-control" type="number"
+                                               placeholder="99999999999">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="example-text-input" class="form-control-label">Tahmini Yaş (Boş
+                                            Bırakılabilir)</label>
+                                        <input name="age" id="age" class="form-control" type="text"
+                                               placeholder="10 veya 10-11">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="example-text-input" class="form-control-label">Biliniyorsa Anne Adı
+                                            (Boş Bırakılabilir)</label>
+                                        <input name="motherName" id="motherName" class="form-control" type="text"
+                                               placeholder="Anne Adı">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="example-text-input" class="form-control-label">Biliniyorsa Baba Adı
+                                            (Boş Bırakılabilir)</label>
+                                        <input name="fatherName" id="fatherName" class="form-control" type="text"
+                                               placeholder="Baba Adı">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <select name="is_alive" id="is_alive">
+                                            <option value="">Durum...</option>
+                                            <option value="0">Yaşıyor</option>
+                                            <option value="1">Ölü</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group" >
+                                        <select name="gender" id="gender">
+                                            <option value="">Cinsiyet...</option>
+                                            <option value="0">Erkek</option>
+                                            <option value="1">Kadın</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <select name="is_adult" id="is_adult">
+                                            <option value="">Yaş Aralığı</option>
+                                            <option value="0">Yetişkin</option>
+                                            <option value="1">Çocuk</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <select name="city" id="city">
-                                        <option style="opacity: 0.5">Şehir...</option>
-                                        @foreach($city as $c)
-                                            <option value="{{$c->id}}">{{$c->il_adi}}</option>
-                                        @endforeach
-                                    </select>
+                            <hr class="horizontal dark">
+                            <p class="text-uppercase text-sm">Adres Bilgileri</p>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="example-text-input" class="form-control-label">Açık Adres</label>
+                                        <input name="address" id="address" class="form-control" type="text"
+                                               placeholder="Elazığ, Çaydaçıra Mah. x sokak vs. vs.">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <select name="city" id="city">
+                                            <option value="" style="opacity: 0.5">Şehir...</option>
+                                            @foreach($city as $c)
+                                                <option value="{{$c->id}}">{{$c->il_adi}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <select name="district" id="district">
+                                            <option value="" style="opacity: 0.5">İlçe...</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="example-text-input" class="form-control-label">Çıkış Saati</label>
+                                        <input name="date" id="date" class="form-control" type="datetime-local">
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <select name="district" id="district">
-                                        <option style="opacity: 0.5">İlçe...</option>
 
-                                    </select>
+                            <p class="text-uppercase text-sm">Fotoğraf</p>
+                            <div class="row">
+                                <div class="form-group">
+                                    <label for="example-text-input" class="form-control-label">Fotoğraf Açıklaması</label>
+                                    <input name="image_name" id="image_name" class="form-control" type="text"
+                                           placeholder="Fotoğraf İçeriği (El,Kol,Doğum İzi vs).">
                                 </div>
+
+                                <div class="form-group row mt-4" style="width: 100%;justify-content: space-between">
+                                    <label class="col-3">Kişi Fotoğraf Ekle</label>
+                                    <label for="file-multiple-upload" class="col-3">
+                                        <a title="Attach a file" class="mr-2 pointer text-primary">
+                                            <i class="las la-paperclip font-20"></i>
+                                            <span class="font-17">Fotoğraf Seçiniz</span>
+                                        </a>
+                                    </label>
+                                    <input multiple name="image_path[]" id="file-multiple-upload" type="file"
+                                           style="opacity: 0; width: 1px;" required>
+                                </div>
+
                             </div>
 
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="example-text-input" class="form-control-label">Çıkış Saati</label>
-                                    <input class="form-control" type="datetime-local" >
-                                </div>
-                            </div>
                         </div>
-
-
-                        <p class="text-uppercase text-sm">Fotoğraf</p>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="example-text-input" class="form-control-label">Açık Adres</label>
-                                    <input name="address" id="address" class="form-control" type="text" placeholder="Elazığ, Çaydaçıra Mah. x sokak vs. vs.">
-                                </div>
-                            </div>
-
-                            <div class="form-group row mt-4" style="width: 100%;justify-content: space-between">
-                                <label class="col-3">Kişi Fotoğraf Ekle</label>
-                                <label for="file-multiple-upload" class="col-3">
-                                    <a title="Attach a file" class="mr-2 pointer text-primary">
-                                        <i class="las la-paperclip font-20"></i>
-                                        <span class="font-17">Fotoğraf Seçiniz</span>
-                                    </a>
-                                </label>
-                                <input multiple name="image_path[]" id="file-multiple-upload" type="file"
-                                       style="opacity: 0; width: 1px;" required>
-                            </div>
-
-                        </div>
-
                     </div>
                 </div>
-            </div>
+
+
         </div>
     </div>
 
-
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
     <script>
+
+        $(document).ready(function () {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+        });
+
+
+        function createForm() {
+
+            var formData = new FormData(document.getElementById('kayit_formu'));
+
+            $.ajax({
+                type: 'POST',
+                url: '{{route('panel.form.create')}}',
+                data: formData,
+                dataType: "json",
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function (data) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Kayıt Oluşturuldu',
+                    });
+                    table.ajax().reload();
+                },
+                error: function (data) {
+                    var errors = '';
+                    for (datas in data.responseJSON.errors) {
+                        errors += data.responseJSON.errors[datas] + '<br>';
+                    }
+                    Swal.fire({
+                        icon: 'error',
+                        title: '@lang('error/index.error')',
+                        html: '<br>' + errors,
+                    });
+                }
+            });
+        }
+
+
         $(document).ready(function () {
             $('#city').change(function () {
                 var id = $(this).val();
@@ -258,7 +319,7 @@
                         var a = document.getElementById('district');
                         $(a).empty();
                         for (var i = 0; i < response.response.length; i++) {
-                            $(a).append('<option value=' + response.response[i].id + '>' + response.response[i].name + '</option>')
+                            $(a).append('<option value=' + response.response[i].id + '>' + response.response[i].ilce_adi + '</option>')
                         }
                     }
                 });
