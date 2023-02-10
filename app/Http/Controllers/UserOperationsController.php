@@ -29,7 +29,7 @@ class UserOperationsController extends Controller
         switch ($request->method()){
             case 'POST';
             $filterQuery = array();
-        $filters = ['city','town','gender'];
+        $filters = ['city_id','district_id','gender'];
         foreach ($filters as $filter){
             if (isset($request->$filter)){
                 $filterQuery["$filter"] = $request->$filter;
