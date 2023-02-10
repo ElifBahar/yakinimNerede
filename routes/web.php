@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FormController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +20,13 @@ Route::get('/', function () {
 Route::get('/table', function () {
     return view('panel.table');
 })->name("table");
-Route::get('/form', function () {
-    return view('panel.form');
-})->name("form");
+
+
+Route::group(['prefix' => 'form'], function () {
+    Route::get('/', [FormController::class, 'index'])->name('panel.form.index');
+    Route::post('/create', [FormController::class, 'create'])->name('panel.form.create');
+    Route::post('/get', [FormController::class, 'get'])->name('panel.form.get');
+    Route::post('/delete', [FormController::class, 'delete'])->name('panel.form.delete');
+    Route::post('/update', [FormController::class, 'update'])->name('panel.form.update');
+    Route::get('/fetch', [FormController::class, 'fetch_form'])->name('panel.form.fetch');
+});
