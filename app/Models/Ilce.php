@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Ilce extends Model
 {
     use HasFactory;
+    protected $table = 'ilces';
+
+    public function getTown() {
+        return $this->hasOne(Depremzede::class, 'city_id','id');
+    }
 }

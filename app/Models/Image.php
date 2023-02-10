@@ -10,7 +10,7 @@ class Image extends Model
     use HasFactory;
     protected $table = 'images';
 
-    public function getImages() {
+    public function getDepremzedeImages() {
         return $this->belongsTo('App\Models\Depremzede', 'depremzede_id', 'id');
     }
 }

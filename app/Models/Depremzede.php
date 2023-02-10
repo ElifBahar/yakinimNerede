@@ -17,5 +17,4 @@ class Depremzede extends Model
     public function getImages() {
         return $this->hasMany(Depremzede::class, 'depremzede_id', 'id');
     }
-
 }

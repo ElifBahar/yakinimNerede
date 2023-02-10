@@ -28,6 +28,8 @@ class CreateDepremzedesTable extends Migration
             $table->date('death_date')->nullable();
             $table->dateTime('cikis_saati')->nullable();
             $table->timestamps();
+
+            $table->foreign('city_id')->on('')->references('id')->onDelete('cascade');
         });
     }
 
