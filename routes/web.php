@@ -19,7 +19,9 @@ Route::get('/table', function () {
     return view('panel.table');
 })->name("table");
 
-
+Route::get('/newHome', function () {
+    return view('newHomePage');
+})->name("newHome");
 Route::group(['prefix' => 'form'], function () {
     Route::get('/', [FormController::class, 'index'])->name('panel.form.index');
     Route::post('/create', [FormController::class, 'create'])->name('panel.form.create');

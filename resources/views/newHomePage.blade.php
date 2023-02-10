@@ -1,5 +1,63 @@
-@extends("wellow.layouts.app")
-@section('content')
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{asset("panel/img/apple-icon.png")}}">
+    <link rel="icon" type="image/png" href="{{asset("panel/img/favicon.png")}}">
+    <title>Yakinim Nerede</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"/>
+    <link id="pagestyle" href="{{asset("panel/css/argon-dashboard.css?v=2.0.4")}}" rel="stylesheet"/>
+    <link id="pagestyle" href="{{asset("font-awesome/css/all.css")}}" rel="stylesheet"/>
+    <script src="{{asset("jquery/jquery-3.6.0.js")}}"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
+    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+
+</head>
+
+<body class="g-sidenav-show bg-gray-100">
+    <div class="container-fluid py-4">
+        <div class="row align-items-end">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="example-text-input" class="form-control-label">Hayati Durum</label>
+                    <input class="form-control" type="text" value="">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="example-text-input" class="form-control-label">Durumu</label>
+                    <select name="vendor_id" id="" class="form-control">
+                        <option selected disabled>Seçim Yapınız</option>
+                        <option selected disabled>Ölü</option>
+                        <option selected disabled>Yaşıyor</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="example-text-input" class="form-control-label">Cinsiyet</label>
+                    <select name="vendor_id" id="" class="form-control">
+                        <option selected disabled>Erkek</option>
+                        <option selected disabled>Kadın</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-1">
+                <div class="form-group">
+                <span class="btn bg-gradient-success mb-0 d-flex justify-content-center align-items-center" ><i class="fas fa-plus ni text-warning text-sm opacity-10"></i>
+</span>
+            </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                <span class="btn bg-gradient-success mb-0 d-flex justify-content-center align-items-center" >Filtrele</span>
+            </div>
+            </div>
+
+        </div>
+    </div>
     <div class="container-fluid py-4">
         <div class="row">
             <div class="col-12">
@@ -197,4 +255,6 @@
             </div>
         </div>
     </div>
-@endsection
+    <script src="{{asset("panel/js/core/bootstrap.min.js")}}"></script>
+</body>
+</html>
