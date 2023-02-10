@@ -303,6 +303,10 @@
         <input type="number"><span class="highlight"></span><span class="bar"></span>
         <label>TC</label>
     </div>
+    <div class="group">
+        <input type="number"><span class="highlight"></span><span class="bar"></span>
+        <label>Doğum Tarihi</label>
+    </div>
     <button type="button" class="button buttonBlue">Giriş Yap
         <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
     </button>
