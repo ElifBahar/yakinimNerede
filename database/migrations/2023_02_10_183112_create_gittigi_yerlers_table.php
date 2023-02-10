@@ -15,7 +15,13 @@ class CreateGittigiYerlersTable extends Migration
     {
         Schema::create('gittigi_yerlers', function (Blueprint $table) {
             $table->id();
+
+            $table->unsignedBigInteger('depremzede_id');
+
             $table->timestamps();
+
+            $table->foreign('depremzede_id')->on('depremzedes')->references('id')->onDelete('cascade');
+
         });
     }
 

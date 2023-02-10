@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Image extends Model
 {
     use HasFactory;
+    protected $table = 'images';
+
+    public function getImages() {
+        return $this->belongsTo('App\Models\Depremzede', 'depremzede_id', 'id');
+    }
 }
