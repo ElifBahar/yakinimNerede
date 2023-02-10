@@ -65,7 +65,7 @@
             </div>
             <div class="col-md-1">
                 <div class="form-group">
-                <span class="btn bg-gradient-success mb-0 d-flex justify-content-center align-items-center" ><i class="fas fa-plus ni text-warning text-sm opacity-10"></i>
+                <span class="btn bg-gradient-success mb-0 d-flex justify-content-center align-items-center" ><i class="fa-sharp fa-regular fa-arrows-rotate"></i>
 </span>
             </div>
             </div>
