@@ -257,8 +257,10 @@
                         </div>
                     </div>
                 </div>
-
-
+            </form>
+            <button type="button" onclick="createForm()"
+                    class="btn btn-primary">Kaydet
+            </button>
         </div>
     </div>
 

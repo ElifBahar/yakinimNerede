@@ -1,5 +1,6 @@
 @extends("panel.layouts.app")
 @section("head")
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <div class="container-fluid py-1 px-3">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
@@ -111,6 +112,7 @@
     <script src="https://unpkg.com/vue@3"></script>
     <div class="container-fluid py-4">
         <div class="row">
+            <form id="kayit_formu" enctype="multipart/form-data">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
@@ -120,8 +122,8 @@
                                 <div class="form-group">
                                     <label for="example-text-input" class="form-control-label">Hayati Durum</label>
                                     <div class="form-check form-check-info text-start">
-                                        <input class="form-check-input" type="radio" value="" name="type">Ölü <br>
-                                        <input class="form-check-input" type="radio" value="" name="type">Yaşıyor <br>
+                                        <input class="form-check-input" type="radio" value="0" name="is_alive">Ölü <br>
+                                        <input class="form-check-input" type="radio" value="1" name="is_alive">Yaşıyor <br>
                                     </div>
                                 </div>
                             </div>
@@ -129,8 +131,8 @@
                                 <div class="form-group">
                                     <label for="example-text-input" class="form-control-label">Cinsiyet</label>
                                     <div class="form-check form-check-info text-start">
-                                        <input class="form-check-input" type="radio" value="" name="gender">Kadın <br>
-                                        <input class="form-check-input" type="radio" value="" name="gender">Erkek <br>
+                                        <input class="form-check-input" type="radio" value="0" name="gender">Kadın <br>
+                                        <input class="form-check-input" type="radio" value="1" name="gender">Erkek <br>
                                         <input class="form-check-input" type="radio" value="" name="gender">Belirsiz <br>
                                     </div>
                                 </div>
@@ -139,9 +141,9 @@
                                 <div class="form-group">
                                     <label for="example-text-input" class="form-control-label">Yaş</label>
                                     <div class="form-check form-check-info text-start">
-                                        <input class="form-check-input" type="radio" value="" name="is_adult">Yetişkin <br>
-                                        <input class="form-check-input" type="radio" value="" name="is_adult">Çocuk <br>
-                                        <input class="form-check-input" type="radio" value="" name="is_adult">Bebek <br>
+                                        <input class="form-check-input" type="radio" value="0" name="is_adult">Yetişkin <br>
+                                        <input class="form-check-input" type="radio" value="1" name="is_adult">Çocuk <br>
+                                        <input class="form-check-input" type="radio" value="2" name="is_adult">Bebek <br>
                                     </div>
                                 </div>
                             </div>
@@ -161,7 +163,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="example-text-input" class="form-control-label">Şehir</label>
-                                    <select name="vendor_id" id="sehir" class="form-control" onchange="getTowns()">
+                                    <select name="city" id="sehir" class="form-control" onchange="getTowns()">
                                         <option selected disabled>Seçim Yapınız</option>
                                         @foreach($iller as $key => $il)
                                             <option value="{{$key+1}}">{{$il->il_adi}}</option>
@@ -172,7 +174,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="example-text-input" class="form-control-label">İlçe</label>
-                                    <select name="vendor_id" id="ilce" class="form-control">
+                                    <select name="district" id="ilce" class="form-control">
                                         <option selected disabled>Seçim Yapınız</option>
                                     </select>
                                 </div>
@@ -180,13 +182,13 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="example-text-input" class="form-control-label">Enkazdan Çıkış Saati</label>
-                                    <input class="form-control" type="time" value="">
+                                    <input class="form-control" type="datetime-local" value="" name="date">
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="example-text-input" class="form-control-label">Adres</label>
-                                    <input class="form-control" type="text" value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09">
+                                    <input name="address" class="form-control" type="text" placeholder="Elazığ, Çaydaçıra Mah. x sokak vs. vs.">
                                 </div>
                             </div>
                         </div>
@@ -196,37 +198,37 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="example-text-input" class="form-control-label">Adı </label>
-                                    <input class="form-control" type="text" value="">
+                                    <input class="form-control" type="text" name="name">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="example-text-input" class="form-control-label">Soyadı</label>
-                                    <input class="form-control" type="text" value="">
+                                    <input class="form-control" type="text"  name="surname" value="">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="example-text-input" class="form-control-label">Tc No</label>
-                                    <input class="form-control" type="text" value="">
+                                    <input class="form-control" type="number" name="tc" value="">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="example-text-input" class="form-control-label">Yaşı</label>
-                                    <input class="form-control" type="number" value="">
+                                    <input class="form-control" name="age" type="number" value="">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="example-text-input" class="form-control-label">Anne Adı</label>
-                                    <input class="form-control" type="text" value="">
+                                    <input name="motherName" class="form-control" type="text" value="">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="example-text-input" class="form-control-label">Baba Adı</label>
-                                    <input class="form-control" type="number" value="">
+                                    <input name="fatherName" class="form-control" type="text" value="">
                                 </div>
                             </div>
                         </div>
@@ -237,12 +239,12 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="example-text-input" class="form-control-label">@{{index+1}}. Fotoğraf</label>
-                                        <input class="form-control" type="file" value="" name="fotos[]">
+                                        <input class="form-control" type="file" value="" name="image_path[]">
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <input class="form-control" type="text" value="" name="foto_texts[]">
+                                        <input class="form-control" type="text" value="" name="image_name[]">
                                         <span class="btn badge bg-gradient-danger" style="margin-top: 10px" @click="removeFoto(index)">Fotoğrafı Kaldır</span>
                                     </div>
                                 </div>
@@ -254,8 +256,57 @@
                     </div>
                 </div>
             </div>
+            </form>
+            <button type="button" onclick="createForm()"
+                    class="btn btn-primary">Kaydet
+            </button>
         </div>
     </div>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+
+        $(document).ready(function () {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+        });
+
+
+        function createForm() {
+
+            var formData = new FormData(document.getElementById('kayit_formu'));
+
+            $.ajax({
+                type: 'POST',
+                url: '{{route('panel.form.create')}}',
+                data: formData,
+                dataType: "json",
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function (data) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Kayıt Oluşturuldu',
+                    });
+                    table.ajax().reload();
+                },
+                error: function (data) {
+                    var errors = '';
+                    for (datas in data.responseJSON.errors) {
+                        errors += data.responseJSON.errors[datas] + '<br>';
+                    }
+                    Swal.fire({
+                        icon: 'error',
+                        title: '@lang('error/index.error')',
+                        html: '<br>' + errors,
+                    });
+                }
+            });
+        }
+    </script>
     <script>
         const app = Vue.createApp({
             data() {
