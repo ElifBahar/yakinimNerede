@@ -20,11 +20,9 @@ class UserOperationsController extends Controller
         return $sonuc->TCKimlikNoDogrulaResult;
     }
     public function checkUser(){
+        $responses= [200,500];
         $result = $this->tcAuthentication($_POST['tc'],$_POST['name'],$_POST['surname'],$_POST['birthDate']);
-        if ($result == true) {
-            /* @ return gelicek */
-        }
-        /* @ return gelicek */
+        return response()->json(['result'=>$responses["$result"]]);
     }
 
     public function getPeople(Request $request){
