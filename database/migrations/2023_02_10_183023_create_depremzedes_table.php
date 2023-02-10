@@ -25,6 +25,7 @@ class CreateDepremzedesTable extends Migration
             $table->boolean('gender')->nullable();
             $table->boolean('is_adult');
             $table->unsignedBigInteger('city_id');
+            $table->date('death_date')->nullable();
             $table->dateTime('cikis_saati')->nullable();
             $table->timestamps();
         });
