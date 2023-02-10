@@ -29,4 +29,7 @@ Route::group(['prefix' => 'form'], function () {
     Route::post('/delete', [FormController::class, 'delete'])->name('panel.form.delete');
     Route::post('/update', [FormController::class, 'update'])->name('panel.form.update');
     Route::get('/fetch', [FormController::class, 'fetch_form'])->name('panel.form.fetch');
+    Route::get('/getDistrict', [FormController::class, 'getDistrict'])->name('getDistrict');
 });
+
+

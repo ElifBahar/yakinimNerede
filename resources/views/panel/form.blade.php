@@ -5,17 +5,11 @@
             <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
                 <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="javascript:;">Kayıtlar</a>
                 </li>
-                <li class="breadcrumb-item text-sm text-white active" aria-current="page">Kayıt Listesi</li>
+                <li class="breadcrumb-item text-sm text-white active" aria-current="page">Kayıt Ekle</li>
             </ol>
-            <h6 class="font-weight-bolder text-white mb-0">Kayıt Listesi</h6>
+            <h6 class="font-weight-bolder text-white mb-0">Kayıt Ekle</h6>
         </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
-            <div class="ms-md-auto d-flex align-items-center">
-                <div class="input-group">
-                    <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
-                    <input type="text" class="form-control" placeholder="Type here...">
-                </div>
-            </div>
             <ul class="navbar-nav  justify-content-end">
                 <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
                     <a href="javascript:;" class="nav-link text-white p-0" id="iconNavbarSidenav">
@@ -118,74 +112,157 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <p class="text-uppercase text-sm">User Information</p>
+                        <p class="text-uppercase text-sm">Kişisel Bilgiler</p>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="example-text-input" class="form-control-label">Username</label>
-                                    <input class="form-control" type="text" value="lucky.jesse">
+                                    <label for="example-text-input" class="form-control-label">Ad (Boş Bırakılabilir)</label>
+                                    <input name="name" id="name" class="form-control" type="text" placeholder="Ad">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="example-text-input" class="form-control-label">Email address</label>
-                                    <input class="form-control" type="email" value="jesse@example.com">
+                                    <label for="example-text-input" class="form-control-label">Soyad (Boş Bırakılabilir)</label>
+                                    <input name="surname" id="surname" class="form-control" type="text" placeholder="Soyad">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="example-text-input" class="form-control-label">First name</label>
-                                    <input class="form-control" type="text" value="Jesse">
+                                    <label for="example-text-input" class="form-control-label">T.C Kimlik (Boş Bırakılabilir)</label>
+                                    <input name="tc" id="tc" class="form-control" type="number" placeholder="99999999999">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="example-text-input" class="form-control-label">Last name</label>
-                                    <input class="form-control" type="text" value="Lucky">
+                                    <label for="example-text-input" class="form-control-label">Tahmini Yaş (Boş Bırakılabilir)</label>
+                                    <input name="age" id="age" class="form-control" type="text" placeholder="10 veya 10-11">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="example-text-input" class="form-control-label">Biliniyorsa Anne Adı (Boş Bırakılabilir)</label>
+                                    <input name="motherName" id="motherName" class="form-control" type="text" placeholder="Anne Adı">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="example-text-input" class="form-control-label">Biliniyorsa Baba Adı (Boş Bırakılabilir)</label>
+                                    <input name="fatherName" id="fatherName" class="form-control" type="text" placeholder="Baba Adı">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group" name="is_alive" id="is_alive">
+                                    <select>
+                                        <option>Durum...</option>
+                                        <option value="0">Yaşıyor</option>
+                                        <option value="1">Ölü</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group" name="gender" id="gender">
+                                    <select>
+                                        <option>Cinsiyet...</option>
+                                        <option value="0">Erkek</option>
+                                        <option value="1">Kadın</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group" name="is_adult" id="is_adult">
+                                    <select>
+                                        <option>Yaş Aralığı</option>
+                                        <option value="0">Yetişkin</option>
+                                        <option value="1">Çocuk</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
                         <hr class="horizontal dark">
-                        <p class="text-uppercase text-sm">Contact Information</p>
+                        <p class="text-uppercase text-sm">Adres Bilgileri</p>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="example-text-input" class="form-control-label">Address</label>
-                                    <input class="form-control" type="text" value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09">
+                                    <label for="example-text-input" class="form-control-label">Açık Adres</label>
+                                    <input name="address" id="address" class="form-control" type="text" placeholder="Elazığ, Çaydaçıra Mah. x sokak vs. vs.">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="example-text-input" class="form-control-label">City</label>
-                                    <input class="form-control" type="text" value="New York">
+                                    <select name="city" id="city">
+                                        <option style="opacity: 0.5">Şehir...</option>
+                                        @foreach($city as $c)
+                                            <option value="{{$c->id}}">{{$c->il_adi}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
+
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="example-text-input" class="form-control-label">Country</label>
-                                    <input class="form-control" type="text" value="United States">
+                                    <select name="district" id="district">
+                                        <option style="opacity: 0.5">İlçe...</option>
+
+                                    </select>
                                 </div>
                             </div>
+
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="example-text-input" class="form-control-label">Postal code</label>
-                                    <input class="form-control" type="text" value="437300">
+                                    <label for="example-text-input" class="form-control-label">Çıkış Saati</label>
+                                    <input class="form-control" type="datetime-local" >
                                 </div>
                             </div>
                         </div>
-                        <hr class="horizontal dark">
-                        <p class="text-uppercase text-sm">About me</p>
+
+
+                        <p class="text-uppercase text-sm">Fotoğraf</p>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="example-text-input" class="form-control-label">About me</label>
-                                    <input class="form-control" type="text" value="A beautiful Dashboard for Bootstrap 5. It is Free and Open Source.">
+                                    <label for="example-text-input" class="form-control-label">Açık Adres</label>
+                                    <input name="address" id="address" class="form-control" type="text" placeholder="Elazığ, Çaydaçıra Mah. x sokak vs. vs.">
                                 </div>
                             </div>
+
+                            <div class="form-group row mt-4" style="width: 100%;justify-content: space-between">
+                                <label class="col-3">Kişi Fotoğraf Ekle</label>
+                                <label for="file-multiple-upload" class="col-3">
+                                    <a title="Attach a file" class="mr-2 pointer text-primary">
+                                        <i class="las la-paperclip font-20"></i>
+                                        <span class="font-17">Fotoğraf Seçiniz</span>
+                                    </a>
+                                </label>
+                                <input multiple name="image_path[]" id="file-multiple-upload" type="file"
+                                       style="opacity: 0; width: 1px;" required>
+                            </div>
+
                         </div>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+
+    <script>
+        $(document).ready(function () {
+            $('#city').change(function () {
+                var id = $(this).val();
+                $.ajax({
+                    type: 'GET',
+                    url: '{{route('getDistrict')}}',
+                    data: {'id': id},
+                    success: function (response) {
+                        var a = document.getElementById('district');
+                        $(a).empty();
+                        for (var i = 0; i < response.response.length; i++) {
+                            $(a).append('<option value=' + response.response[i].id + '>' + response.response[i].name + '</option>')
+                        }
+                    }
+                });
+            });
+        });
+    </script>
 @endsection
