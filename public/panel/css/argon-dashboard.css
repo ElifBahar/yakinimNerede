@@ -21132,7 +21132,7 @@ fieldset:disabled .btn {
   .dropstart .dropdown-toggle:after,
   .dropend .dropdown-toggle:after {
     content: "\f107";
-    font: normal normal normal 14px/1 FontAwesome;
+    font: normal normal normal 14px/1 Font Awesome 6 Pro;
     border: none;
     vertical-align: middle;
     font-weight: 600;
@@ -21191,7 +21191,7 @@ fieldset:disabled .btn {
   }
 
   .dropdown .dropdown-menu:before {
-    font-family: "FontAwesome";
+    font-family: "Font Awesome 6 Pro";
     content: "\f0d8";
     position: absolute;
     top: 0;
@@ -21227,7 +21227,7 @@ fieldset:disabled .btn {
   }
 
   .navbar-toggler+.navbar-collapse .dropdown:not(.nav-item) .dropdown-menu:before {
-    font-family: "FontAwesome";
+    font-family: "Font Awesome 6 Pro";
     content: "\f0d8";
     position: absolute;
     top: 0;
@@ -21272,7 +21272,7 @@ fieldset:disabled .btn {
   }
 
   .dropdown .dropdown-menu:before {
-    font-family: "FontAwesome";
+    font-family: "Font Awesome 6 Pro";
     content: "\f0d8";
     position: absolute;
     top: 0;
@@ -21435,7 +21435,7 @@ fieldset:disabled .btn {
 }
 
 .dropup .dropdown-menu:after {
-  font-family: "FontAwesome";
+  font-family: "Font Awesome 6 Pro";
   content: "\f0d7";
   position: absolute;
   z-index: -1;
@@ -21597,6 +21597,12 @@ fieldset:disabled .btn {
   border: 1px solid #cbd3da;
   margin-top: 0.25rem;
   position: relative;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .form-check:not(.form-switch) .form-check-input[type="checkbox"]:checked,
@@ -21606,17 +21612,12 @@ fieldset:disabled .btn {
 
 .form-check:not(.form-switch) .form-check-input[type="checkbox"]:after {
   transition: opacity 0.25s ease-in-out;
-  font-family: "FontAwesome";
-  content: "\f00c";
-  width: 100%;
-  height: 100%;
-  color: #fff;
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 0.67rem;
-  opacity: 0;
+  background-color: white;
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    width: 12px;
+    height: 12px;
 }
 
 .form-check:not(.form-switch) .form-check-input[type="checkbox"]:checked:after {

@@ -9,10 +9,9 @@ use Illuminate\Http\Request;
 class FormController extends Controller
 {
     function index(){
-        $city = Sehir::all();
-        return view('panel.form',compact('city'));
+        $iller = Sehir::all();
+        return view('panel.kayitlar.kayit-olustur',compact('iller'));
     }
-
     function fetch(){
 
     }
@@ -33,8 +32,8 @@ class FormController extends Controller
 
     }
 
-    function getDistrict(Request $request){
-        $il = Ilce::where("il_id",$request->id)->get();
-        return response()->json(['response' => $il]);
+    public function getTowns(Request $request){
+        $towns = Ilce::where('il_id',$request->il_id)->get();
+        return response()->json(['towns' => $towns]);
     }
 }

@@ -15,7 +15,7 @@ class IlceSeeder extends Seeder
     public function run()
     {
         DB::select("
-        insert into yakinimNerede.ilces (id, il_id, il_adi, ilce_adi, created_at, updated_at)
+        insert into yakinim_nerede.ilces (id, il_id, il_adi, ilce_adi, created_at, updated_at)
 values  (1, 1, 'ADANA', 'SEYHAN', null, null),
         (2, 1, 'ADANA', 'CEYHAN', null, null),
         (3, 1, 'ADANA', 'FEKE', null, null),
