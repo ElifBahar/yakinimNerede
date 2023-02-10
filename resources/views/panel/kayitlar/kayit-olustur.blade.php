@@ -108,6 +108,7 @@
     </div>
 @endsection
 @section('content')
+    <script src="https://unpkg.com/vue@3"></script>
     <div class="container-fluid py-4">
         <div class="row">
             <div class="col-md-12">
@@ -229,11 +230,56 @@
                                 </div>
                             </div>
                         </div>
+                        <hr class="horizontal dark">
+                        <p class="text-uppercase text-sm">Depremzede Fotoğrafları</p>
+                        <div class="row person-fotos" id="fotos">
+                            <div class="col-md-4"  v-for="(foto, index) in fotos">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="example-text-input" class="form-control-label">@{{index+1}}. Fotoğraf</label>
+                                        <input class="form-control" type="file" value="" name="fotos[]">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <input class="form-control" type="text" value="" name="foto_texts[]">
+                                        <span class="btn badge bg-gradient-danger" style="margin-top: 10px" @click="removeFoto(index)">Fotoğrafı Kaldır</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <span class="btn badge bg-gradient-success w-auto" @click="addFoto" style="padding: 8px 15px !important; font-size: 16px">Fotoğraf Ekle</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    fotos:[
+                        {
+                            id:1
+                        }
+                    ],
+                    count:1
+                };
+            },
+            methods: {
+                addFoto() {
+                    this.count++
+                    this.fotos.push({id: this.count})
+                },
+                removeFoto(index) {
+                    this.count--
+                    this.fotos.splice(index,1)
+                },
+            }
+        }).mount("#fotos");
+    </script>
     <script>
         $("input[name='state']").change(function (event) {
            if(event.currentTarget.value === "1") {
