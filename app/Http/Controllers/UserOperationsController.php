@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Depremzede;
 use Illuminate\Http\Request;
 
 class UserOperationsController extends Controller
@@ -24,5 +25,24 @@ class UserOperationsController extends Controller
             /* @ return gelicek */
         }
         /* @ return gelicek */
+    }
+
+    public function getPeople(Request $request){
+        switch ($request->method()){
+            case 'POST';
+            $filterQuery = array();
+        $filters = ['city','town','gender'];
+        foreach ($filters as $filter){
+            if (isset($request->$filter)){
+                $filterQuery["$filter"] = $request->$filter;
+            }
+        }
+        $peoples = Depremzede::where($filterQuery)->get();
+            return view('homepage',compact('peoples'));
+
+            case 'GET';
+            $peoples = Depremzede::all();
+            return view('homepage',compact('peoples'));
+        }
     }
 }

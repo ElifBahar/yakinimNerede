@@ -14,9 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::match(['GET','POST'],'/',[\App\Http\Controllers\UserOperationsController::class,'getPeople'])->name('getPeople');
 Route::get('/table', function () {
     return view('panel.table');
 })->name("table");
