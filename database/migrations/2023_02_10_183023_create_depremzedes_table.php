@@ -29,7 +29,7 @@ class CreateDepremzedesTable extends Migration
             $table->dateTime('cikis_saati')->nullable();
             $table->timestamps();
 
-            $table->foreign('city_id')->on('')->references('id')->onDelete('cascade');
+            $table->foreign('city_id')->references('id')->on('sehirs');
         });
     }
 

@@ -15,6 +15,7 @@ class CreateSehirsTable extends Migration
     {
         Schema::create('sehirs', function (Blueprint $table) {
             $table->id();
+            $table->string('il_adi');
             $table->timestamps();
         });
     }
