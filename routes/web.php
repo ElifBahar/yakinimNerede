@@ -24,11 +24,12 @@ Route::get('/newHome', function () {
 })->name("newHome");
 Route::group(['prefix' => 'form'], function () {
     Route::get('/', [FormController::class, 'index'])->name('panel.form.index');
+    Route::get('/list', [FormController::class, 'list'])->name('panel.form.list');
     Route::post('/create', [FormController::class, 'create'])->name('panel.form.create');
     Route::post('/get', [FormController::class, 'get'])->name('panel.form.get');
     Route::post('/delete', [FormController::class, 'delete'])->name('panel.form.delete');
     Route::post('/update', [FormController::class, 'update'])->name('panel.form.update');
-    Route::get('/fetch', [FormController::class, 'fetch_form'])->name('panel.form.fetch');
+    Route::get('/fetch', [FormController::class, 'fetch'])->name('panel.form.fetch');
     Route::get('getTowns', [FormController::class, 'getTowns'])->name('get.towns');
 });
 

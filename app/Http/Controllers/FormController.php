@@ -9,6 +9,7 @@ use App\Models\Image;
 use App\Models\Sehir;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Yajra\DataTables\DataTables;
 
 class FormController extends Controller
 {
@@ -16,8 +17,56 @@ class FormController extends Controller
         $iller = Sehir::all();
         return view('panel.kayitlar.kayit-olustur',compact('iller'));
     }
-    function fetch(){
 
+    function list(){
+        return view('panel.kayitlar.kayit-listesi');
+    }
+    function fetch(){
+        $depremzede = Depremzede::all();
+
+        return DataTables::of($depremzede)
+//            ->addColumn('update', function ($data) {
+//                if (auth()->user()->can('update slider')) {
+//                    return "<button onclick='updateSlider(" . $data->id . ")' class='btn btn-warning'>" . trans('announcements/index.update') . "</button>";
+//                }
+//            })
+            ->editColumn('name_surname', function ($row) {
+                return $row->name . " " .$row->surname;
+            })
+            ->editColumn('parent_name', function ($row) {
+                return $row->mother_name . "-" .$row->father_name;
+            })
+            ->editColumn('type', function ($row) {
+                if ($row->type==0){
+                    return "Ölü";
+                }elseif ($row->type == 1){
+                    return "Yaşıyor";
+                }
+            })
+            ->editColumn('gender', function ($row) {
+                if ($row->gender==0){
+                    return "Kadın";
+                }elseif ($row->gender == 1){
+                    return "Erkek";
+                }elseif ($row->gender == null){
+                    return 'Belirlenemedi';
+                }
+            })
+            ->editColumn('is_adult', function ($row) {
+                if ($row->is_adult==0){
+                    return "Yetişkin" . "-" .$row->yas;
+                }elseif ($row->is_adult == 1){
+                    return "Çocuk". "-" .$row->yas;
+                }elseif ($row->is_adult == 2){
+                    return "Bebek". "-" .$row->yas;
+                }
+            })
+            ->editColumn('city_district', function ($row) {
+               $sehir = Sehir::where('id',$row->city_id)->first()->il_adi;
+               $ilce = Ilce::where('id',$row->district_id)->first()->ilce_adi;
+               return $sehir. "-" . $ilce;
+            })
+            ->rawColumns(['name_surname','parent_name','type', 'gender', 'is_adult', 'city_district'])->make();
     }
 
     function create(Request $request)
