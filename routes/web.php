@@ -18,7 +18,8 @@ Route::match(['GET','POST'],'/',[\App\Http\Controllers\UserOperationsController:
 Route::get('/table', function () {
     return view('panel.table');
 })->name("table");
-
+Route::get('login',[\App\Http\Controllers\UserOperationsController::class,'loginPage'])->name('loginPage');
+Route::post('checkPerson',[\App\Http\Controllers\UserOperationsController::class,'checkUser'])->name('checkTc');
 Route::get('/newHome', function () {
     return view('newHomePage');
 })->name("newHome");

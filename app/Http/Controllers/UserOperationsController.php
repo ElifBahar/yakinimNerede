@@ -4,9 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Depremzede;
 use Illuminate\Http\Request;
+use MongoDB\Driver\Session;
 
 class UserOperationsController extends Controller
 {
+    public function loginPage(){
+        return view('login');
+    }
     public  function tcAuthentication($tc,$name,$surname,$birthDate){
         $veriler = array(
             "TCKimlikNo" => $tc,
@@ -20,10 +24,15 @@ class UserOperationsController extends Controller
         return $sonuc->TCKimlikNoDogrulaResult;
     }
     public function checkUser(){
-        $responses= [200,500];
-        $result = $this->tcAuthentication($_POST['tc'],$_POST['name'],$_POST['surname'],$_POST['birthDate']);
-        return response()->json(['result'=>$responses["$result"]]);
-    }
+        $result = $this->tcAuthentication($_POST['tc'],$_POST['name'],$_POST['surname'],$_POST['dogum_yili']);
+            if ($result == true){
+                \session(['status'=>200]);
+                return redirect()->route('getPeople');
+            }
+        \session(['status'=>500]);
+
+        return redirect()->route('loginPage');
+        }
 
     public function getPeople(Request $request){
         switch ($request->method()){
@@ -40,7 +49,7 @@ class UserOperationsController extends Controller
 
             case 'GET';
             $peoples = Depremzede::all();
-            return view('homepage',compact('peoples'));
+            return view('newHomePage',compact('peoples'));
         }
     }
 }

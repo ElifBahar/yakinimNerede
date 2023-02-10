@@ -290,24 +290,25 @@
     </div>
 
 </hgroup>
-<form>
+<form method="POST" action="{{route('checkTc')}}">
+    @csrf
     <div class="group">
-        <input type="text"><span class="highlight"></span><span class="bar"></span>
+        <input name="name" type="text"><span class="highlight"></span><span class="bar"></span>
         <label>İsim</label>
     </div>
     <div class="group">
-        <input type="email"><span class="highlight"></span><span class="bar"></span>
+        <input name="surname" type="text"><span class="highlight"></span><span class="bar"></span>
         <label>Soyisim</label>
     </div>
     <div class="group">
-        <input type="number"><span class="highlight"></span><span class="bar"></span>
+        <input name="tc" type="number"><span class="highlight"></span><span class="bar"></span>
         <label>TC</label>
     </div>
     <div class="group">
-        <input type="number"><span class="highlight"></span><span class="bar"></span>
+        <input name="dogum_yili" type="number"><span class="highlight"></span><span class="bar"></span>
         <label>Doğum Tarihi</label>
     </div>
-    <button type="button" class="button buttonBlue">Giriş Yap
+    <button type="submit" class="button buttonBlue">Giriş Yap
         <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
     </button>
 </form>
