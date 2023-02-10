@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ilce;
 use Illuminate\Http\Request;
 
 class FormController extends Controller
@@ -29,4 +30,16 @@ class FormController extends Controller
     function get(){
 
     }
+
+    public function getCities(){
+        $iller = Ilce::get()->unique('il_id')->pluck('il_adi');
+    }
+
+    public function getIl(){
+
+    }
+
+
+
+
 }

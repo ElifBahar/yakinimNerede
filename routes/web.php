@@ -30,3 +30,5 @@ Route::group(['prefix' => 'form'], function () {
     Route::post('/update', [FormController::class, 'update'])->name('panel.form.update');
     Route::get('/fetch', [FormController::class, 'fetch_form'])->name('panel.form.fetch');
 });
+
+
