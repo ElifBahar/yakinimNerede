@@ -132,6 +132,9 @@
                                         <th>Şehir/İlçe</th>
                                         <th>Enkaz Çıkış Saati</th>
                                         <th>Adres</th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
                                     </tr>
                                     </thead>
 
@@ -147,6 +150,9 @@
                                         <th>Şehir/İlçe</th>
                                         <th>Enkaz Çıkış Saati</th>
                                         <th>Adres</th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
                                     </tr>
                                     </tfoot>
                                 </table>
@@ -157,8 +163,54 @@
             </div>
         </div>
     </div>
-
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
+
+        function deleteDepremzede(id) {
+            Swal.fire({
+                icon: "warning",
+                title: "Emin misiniz?",
+                html: "Silmek istediğinize emin misiniz?",
+                showConfirmButton: true,
+                showCancelButton: true,
+                confirmButtonText: "Onayla",
+                cancelButtonText: "İptal",
+                cancelButtonColor: "#e30d0d"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: 'POST',
+                        headers: {'X-CSRF-TOKEN': "{{csrf_token()}} "},
+                        url: '{!! route('panel.form.delete') !!}',
+                        data: {id: id},
+                        dataType: "json",
+                        success: function () {
+                            Swal.fire({
+                                icon: "success",
+                                title: "Başarılı",
+                                showConfirmButton: true,
+                                confirmButtonText: "Tamam"
+                            });
+                            $('#categoryTable').DataTable().ajax.reload()
+                        },
+                        error: function () {
+                            Swal.fire({
+                                icon: "error",
+                                title: "Hata!",
+                                html: "<div id=\"validation-errors\"></div>",
+                                showConfirmButton: true,
+                                confirmButtonText: "Tamam"
+                            });
+                            $.each(data.responseJSON.errors, function (key, value) {
+                                $('#validation-errors').append('<div class="alert alert-danger">' + value + '</div>');
+                            });
+                        }
+                    });
+                }
+            });
+        }
+
+
         var table = $('#categoryTable').DataTable({
             order: [
                 [0, 'DESC']
@@ -184,9 +236,14 @@
                 {data: 'city_district'},
                 {data: 'date'},
                 {data: 'address'},
+                {data: 'detail'},
+                {data: 'update'},
+                {data: 'delete'},
             ]
         });
     </script>
+
+
 
 @endsection
 

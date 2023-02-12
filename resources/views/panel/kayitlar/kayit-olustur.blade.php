@@ -151,8 +151,8 @@
                                 <div class="form-group">
                                     <label for="example-text-input" class="form-control-label">Tanınabilirlik</label>
                                     <div class="form-check form-check-info text-start">
-                                        <input class="form-check-input" type="radio" value="1" name="state">Kimliği Belirli <br>
-                                        <input class="form-check-input" type="radio" value="0" name="state">Kimliği Belirsiz <br>
+                                        <input class="form-check-input" type="radio" value="1" name="recognizability">Kimliği Belirli <br>
+                                        <input class="form-check-input" type="radio" value="0" name="recognizability">Kimliği Belirsiz <br>
                                     </div>
                                 </div>
                             </div>
@@ -332,7 +332,7 @@
         }).mount("#fotos");
     </script>
     <script>
-        $("input[name='state']").change(function (event) {
+        $("input[name='recognizability']").change(function (event) {
            if(event.currentTarget.value === "1") {
                 $(".person-info").css("display","flex")
            }else{

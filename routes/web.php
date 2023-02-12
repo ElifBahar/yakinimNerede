@@ -29,7 +29,10 @@ Route::group(['prefix' => 'form'], function () {
     Route::post('/create', [FormController::class, 'create'])->name('panel.form.create');
     Route::post('/get', [FormController::class, 'get'])->name('panel.form.get');
     Route::post('/delete', [FormController::class, 'delete'])->name('panel.form.delete');
+    Route::post('/deleteImage', [FormController::class, 'deleteImage'])->name('panel.form.deleteImage');
     Route::post('/update', [FormController::class, 'update'])->name('panel.form.update');
+    Route::get('/update_view/{id}', [FormController::class, 'update_view'])->name('panel.form.update_view');
+    Route::get('/detail/{id}', [FormController::class, 'detail'])->name('panel.form.detail');
     Route::get('/fetch', [FormController::class, 'fetch'])->name('panel.form.fetch');
     Route::get('getTowns', [FormController::class, 'getTowns'])->name('get.towns');
 });
